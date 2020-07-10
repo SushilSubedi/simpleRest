@@ -92,24 +92,6 @@ router.get('/:orderId', (req,res) => {
     })
 });
 
-// router.patch('/:orderId', (req,res) => {
-//    const id = req.params.orderId;
-//    const updateOps = {};
-//    for (const ops of req.body){
-//        updateOps[ops.propName] = ops.value
-//    }
-//    Order.update({_id: id}, {$set: updateOps}).exec().then(result => {
-//        const response = {
-//            _id: result._id,
-//            quantity: result.quantity,
-//            product: result.product,
-//            response: {
-//                 type: "GET",
-//                 url: 'http://localhost:3000/orders/'
-//            }
-//        }
-//    })
-// });
 
 router.delete('/:orderId', (req,res) => {
     const id = req.params.orderId;
@@ -128,3 +110,8 @@ router.delete('/:orderId', (req,res) => {
 
 
 module.exports = router;
+
+
+
+
+

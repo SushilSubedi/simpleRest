@@ -4,8 +4,9 @@ const morgan = require('morgan');
 const monogoos = require('mongoose');
 
 
-const Productrouters = require('./api/routes/products');
+const productRouters = require('./api/routes/products');
 const orderRouters = require('./api/routes/orders');
+const userRouters = require('./api/routes/user');
 
 //middleware
 
@@ -30,8 +31,10 @@ app.use((req,res, next) => {
     next();
 })
 
-app.use('/products', Productrouters);
+app.use('/products', productRouters);
 app.use('/orders', orderRouters);
+app.use('/user', userRouters);
+app.use('/uploads', express.static('uploads'))
 
 app.use((req,res,next) => {
     const error = new Error('Not found');
@@ -47,9 +50,6 @@ app.use((error,req,res,next) => {
         }
     })
 })
-
-//routes
-
 
 //server
 const PORT = process.env.PORT || 3000;

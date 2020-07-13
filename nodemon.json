@@ -1,6 +1,7 @@
 {
     "env": {
         "MONGO_ATLAS_PW" : "sushil123",
-        "mongoUser": "mongoUser"
+        "mongoUser": "mongoUser",
+        "JWT": "secret"
     }
 }

@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const bycrypt = require('bcrypt');
 const User = require('../../Models/user');
 const jwt = require("jsonwebtoken");
+const checkAuth = require('../middleware/check-Auth');
 
 router.post("/signup", (req,res,next) => {
     User.find({email:req.body.email}).exec().then(user =>{

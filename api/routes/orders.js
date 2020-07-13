@@ -3,9 +3,9 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const Order = require('../../Models/orders');
 const Product = require('../../Models/products');
+const checkAuth = require('../middleware/check-Auth');
 
-
-router.get('/', (req,res) => {
+router.get('/',checkAuth ,(req,res) => {
     Order.find().populate('product').exec().then(docs => {
         const response = {
             count: docs.length,
@@ -28,7 +28,7 @@ router.get('/', (req,res) => {
 
 });
 
-router.post('/', (req,res) => {
+router.post('/',checkAuth , (req,res) => {
     Product.findById(req.body.productId).exec().then(product =>{
         console.log(product)
         if(!product){
@@ -70,7 +70,7 @@ router.post('/', (req,res) => {
     })
 });
 
-router.get('/:orderId', (req,res) => {
+router.get('/:orderId',checkAuth  ,(req,res) => {
     const id = req.params.orderId;
     Order.findById(id).select('-_v').populate('product').exec().then(doc => {
         if(doc){
@@ -93,7 +93,7 @@ router.get('/:orderId', (req,res) => {
 });
 
 
-router.delete('/:orderId', (req,res) => {
+router.delete('/:orderId', checkAuth ,(req,res) => {
     const id = req.params.orderId;
     Order.remove({_id: id}).exec().then(result => {
         res.status(200).json({
